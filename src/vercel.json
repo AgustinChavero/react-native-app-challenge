@@ -8,6 +8,10 @@
   "routes": [
     { "handle": "filesystem" },
     {
+      "src": "/api/(.*)",
+      "dest": "/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/"
     }
