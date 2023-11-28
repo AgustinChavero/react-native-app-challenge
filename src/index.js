@@ -7,7 +7,7 @@ async function startServer() {
     console.log("Starting the server...");
     await connectDatabase();
     console.log("Server is ready and data has been synchronized.");
-    await app.listen({ port: 3000 }, (err) => {
+    await app.listen({ port: process.env.PORT || 3000 }, (err) => {
       if (err) throw err;
     });
     console.log(`Server running at ${process.env.PORT || 3000}`);
