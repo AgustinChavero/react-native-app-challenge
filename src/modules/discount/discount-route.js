@@ -7,10 +7,10 @@ const {
 } = require("./discount-controller");
 
 async function discountRoute(fastify) {
-  fastify.post("/discount", postDiscount);
-  fastify.get("/discount", getAllDiscount);
-  fastify.get("/discount/:id", getDiscount);
-  fastify.delete("/discount/:id", deleteDiscount);
+  fastify.post("/api/discount", postDiscount);
+  fastify.get("/api/discount", getAllDiscount);
+  fastify.get("/api/discount/:id", getDiscount);
+  fastify.delete("/api/discount/:id", deleteDiscount);
 }
 
 module.exports = discountRoute;

@@ -7,11 +7,11 @@ const {
 } = require("./product-controller");
 
 async function productRoute(fastify) {
-  fastify.post("/product", postProduct);
-  fastify.put("/product/:id", putProduct);
-  fastify.get("/product", getAllProduct);
-  fastify.get("/product/:id", getProduct);
-  fastify.delete("/product/:id", deleteProduct);
+  fastify.post("/api/product", postProduct);
+  fastify.put("/api/product/:id", putProduct);
+  fastify.get("/api/product", getAllProduct);
+  fastify.get("/api/product/:id", getProduct);
+  fastify.delete("/api/product/:id", deleteProduct);
 }
 
 module.exports = productRoute;
