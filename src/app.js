@@ -9,11 +9,11 @@ const userRoute = require("./modules/user/user-route");
 
 const app = fastify({ logger: true });
 
-app.register(discountRoute, { prefix: "/api" });
-app.register(invoiceRoute, { prefix: "/api" });
-app.register(productRoute, { prefix: "/api" });
-app.register(storeRoute, { prefix: "/api" });
-app.register(userRoute, { prefix: "/api" });
+app.register(discountRoute, { prefix: "/discount" });
+app.register(invoiceRoute, { prefix: "/invoice" });
+app.register(productRoute, { prefix: "/product" });
+app.register(storeRoute, { prefix: "/store" });
+app.register(userRoute, { prefix: "/user" });
 
 app.get("/", async (request, reply) => {
   return reply.send({

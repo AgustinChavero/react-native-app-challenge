@@ -7,11 +7,11 @@ const {
 } = require("./store-controller");
 
 async function storeRoute(fastify) {
-  fastify.post("/store", postStore);
-  fastify.put("/store/:id", putStore);
-  fastify.get("/store", getAllStore);
-  fastify.get("/store/:id", getStore);
-  fastify.delete("/store/:id", deleteStore);
+  fastify.post("/", postStore);
+  fastify.put("/:id", putStore);
+  fastify.get("/", getAllStore);
+  fastify.get("/:id", getStore);
+  fastify.delete("/:id", deleteStore);
 }
 
 module.exports = storeRoute;
