@@ -1,15 +1,24 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-import { styles } from "./login-style";
+import { login } from "../../services/auth/login";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigation = useNavigation();
 
-  const handleLogin = () => {
-    console.log("Email:", email);
-    console.log("Password:", password);
+  const handleLogin = async () => {
+    try {
+      const response = await login(email, password);
+      console.log("Respuesta del inicio de sesión:", response);
+      setEmail("");
+      setPassword("");
+      navigation.navigate("store");
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+    }
   };
 
   return (
