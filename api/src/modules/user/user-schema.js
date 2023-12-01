@@ -32,10 +32,9 @@ const bodySchema = Joi.object({
 }).options({ abortEarly: false });
 
 const querySchema = Joi.object({
-  store_id: Joi.string().trim().required().messages({
+  store_id: Joi.string().trim().messages({
     "string.base": "The store_id must be a string",
     "string.empty": "The store_id cannot be empty",
-    "string.required": "The store_id is required",
   }),
   name: Joi.string().trim().max(255).messages({
     "string.base": "The name must be a string",

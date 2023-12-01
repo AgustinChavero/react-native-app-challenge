@@ -1,13 +1,17 @@
 const fastify = require("fastify");
+const fastifyCors = require("@fastify/cors");
 const { errorHandler } = require("./services/errors/custom-error");
+
+const app = fastify({ logger: true });
+app.register(fastifyCors, {
+  origin: "http://localhost:19006",
+});
 
 const discountRoute = require("./modules/discount/discount-route");
 const invoiceRoute = require("./modules/invoice/invoice-route");
 const productRoute = require("./modules/product/product-route");
 const storeRoute = require("./modules/store/store-route");
 const userRoute = require("./modules/user/user-route");
-
-const app = fastify({ logger: true });
 
 app.register(discountRoute, { prefix: "/discount" });
 app.register(invoiceRoute, { prefix: "/invoice" });

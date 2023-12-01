@@ -33,13 +33,13 @@ const postUser = async (req, reply) => {
 
 const loginUser = async (req, reply) => {
   const { password } = req.body;
-  const { id } = req.params;
+  const { query } = req;
 
-  const paramsValidate = paramsValidation(paramsSchema, req);
-  if (paramsValidate) return customError(reply, 404, `${paramsValidate}`);
+  const queryValidate = queryValidation(querySchema, req);
+  if (queryValidate) return customError(reply, 404, `${queryValidate}`);
 
-  const findUser = await globalService.findElement(id, User);
-  if (!findUser) return customError(reply, 404, "User not found");
+  const findUser = await globalService.findAllElement(User, query);
+  if (!findUser.length) return customError(reply, 404, "Users not found");
 
   const tryLogin = await loginElement(password, findUser);
   if (!tryLogin) return customError(reply, 404, "Password not match");
