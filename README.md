@@ -1,4 +1,4 @@
-# Dashboard administrativo de tienda
+# Dashboard administrativo de tienda (EN PROCESO)
 
 - El objetivo del proyecto es poder dar acceso, al administrador o los empleados, a la gestion de los distintos negocios.
 - En el dashboard se deberia poder:
@@ -9,6 +9,11 @@
   - Que se puedan suspender productos
   - Que se puedan gestionar las facturas para ventas
 
+### Tecnologias:
+
+- MongoDB | NodeJS | JavaScript | Mongoose | Joi | Jest
+- ReactNative | Zustand | CSS
+
 ### Carpetas:
 
 ##### API
@@ -18,6 +23,9 @@
 - En el archivo env.example se da un ejemplo de los valores que tienen que tener las variables para hacer funcionar el backend
 
 ##### CLIENT
+
+- En esta carpeta se ubicara toda la logica del backend para interactuar con la base de datos
+- En el archivo env.example se da un ejemplo de los valores que tienen que tener las variables para hacer funcionar el backend
 
 ### Inicializacion:
 
