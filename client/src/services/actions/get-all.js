@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const getAllStores = async () => {
+const getAll = async (route) => {
   try {
-    const response = await axios.get("http://localhost:3000/store/");
+    const response = await axios.get(`http://localhost:3000/${route}/`);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -10,4 +10,4 @@ const getAllStores = async () => {
   }
 };
 
-export { getAllStores };
+export { getAll };

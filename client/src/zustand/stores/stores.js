@@ -1,11 +1,11 @@
 import { create } from "zustand";
-import { getAllStores } from "../../services/actions/stores/get-all-stores";
+import { getAll } from "../../services/actions/get-all";
 
 export const useStores = create((set) => ({
   allStores: [],
   fetchData: async () => {
     try {
-      const stores = await getAllStores();
+      const stores = await getAll("store");
       set((state) => ({
         allStores: stores,
       }));

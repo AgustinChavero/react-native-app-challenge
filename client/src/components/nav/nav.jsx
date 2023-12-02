@@ -1,14 +1,25 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image, Pressable, StyleSheet } from "react-native";
 
 import { styles } from "./nav-style";
 
-const Nav = () => {
+const NavBar = () => {
   return (
-    <View>
-      <Text>Nav</Text>
+    <View style={styles.navbar}>
+      <Pressable style={styles.icon}>
+        <Image source={require("./../../../assets/icons8-menu-24.png")} />
+        <Text>Menu</Text>
+      </Pressable>
+
+      <View style={styles.title}>
+        <Text>Hello, this is a NavBar</Text>
+      </View>
+
+      <Pressable style={styles.icon}>
+        <Text>Profile</Text>
+      </Pressable>
     </View>
   );
 };
 
-export default Nav;
+export default NavBar;
