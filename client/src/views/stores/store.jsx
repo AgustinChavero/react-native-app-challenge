@@ -1,13 +1,35 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { useEffect } from "react";
+import { FlatList, View, Text, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-import { styles } from "./store-style";
+import { useStores } from "../../zustand/stores/stores";
 
 const Store = () => {
+  const navigation = useNavigation();
+
+  const allStores = useStores((state) => state.allStores);
+  const fetchData = useStores((state) => state.fetchData);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleStorePress = () => {
+    navigation.navigate("home");
+  };
+
   return (
-    <View>
-      <Text>Store</Text>
-    </View>
+    <FlatList
+      data={allStores.data?.stores}
+      renderItem={({ item }) => (
+        <TouchableOpacity onPress={handleStorePress} key={item._id}>
+          <View>
+            <Text>{item.street}</Text>
+          </View>
+        </TouchableOpacity>
+      )}
+      keyExtractor={(item) => item._id}
+    />
   );
 };
 
