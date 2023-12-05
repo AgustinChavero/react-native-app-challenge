@@ -4,15 +4,19 @@ import React from "react";
 const Drawer = createDrawerNavigator(); */
 
 const AppStack = () => {
-  return {
-    /* <Drawer.Navigator>
+  return (
+    <View>
+      <Text>APP-STACK</Text>
+    </View>
+  );
+};
+
+export default AppStack;
+
+/* <Drawer.Navigator>
       <Drawer.Screen />
       <Drawer.Screen />
       <Drawer.Screen />
       <Drawer.Screen />
       <Drawer.Screen />
     </Drawer.Navigator> */
-  };
-};
-
-export default AppStack;
