@@ -1,42 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { styles } from "./login-style";
 
-import { login } from "../../services/auth/login";
+import { AuthContext } from "../../middlewares/auth-context/auth-context";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigation = useNavigation();
 
-  const handleLogin = async () => {
-    try {
-      const response = await login(email, password);
-      console.log("Respuesta del inicio de sesión:", response);
-      setEmail("");
-      setPassword("");
-      navigation.navigate("store");
-    } catch (error) {
-      console.error("Error al iniciar sesión:", error);
-    }
-  };
-
+  const { login } = useContext(AuthContext);
   return (
-    <View>
-      <Text>Iniciar sesión</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Iniciar sesión</Text>
       <TextInput
+        style={styles.input}
         placeholder="Correo electrónico"
         onChangeText={(text) => setEmail(text)}
         value={email}
       />
       <TextInput
+        style={styles.input}
         placeholder="Contraseña"
         onChangeText={(text) => setPassword(text)}
         value={password}
         secureTextEntry
       />
-      <TouchableOpacity onPress={handleLogin}>
-        <Text>Iniciar sesión</Text>
+      <TouchableOpacity onPress={() => login(email, password)} style={styles.button}>
+        <Text style={styles.buttonText}>Iniciar sesión</Text>
       </TouchableOpacity>
     </View>
   );

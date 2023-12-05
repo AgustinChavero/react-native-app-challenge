@@ -1,25 +1,25 @@
-import React, { useEffect } from "react";
-import { FlatList, View, Text } from "react-native";
-import { useProducts } from "../../zustand/products/products";
+import React from "react";
+import { useNavigation } from "@react-navigation/native";
+import { Text, Image, TouchableOpacity } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+
+import { styles } from "./home-style";
 
 const Home = () => {
-  const allProducts = useProducts((state) => state.allProducts);
-  const fetchData = useProducts((state) => state.fetchData);
+  const navigation = useNavigation();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const handleLoginRoute = () => {
+    navigation.navigate("login");
+  };
 
   return (
-    <FlatList
-      data={allProducts.data?.products}
-      renderItem={({ item }) => (
-        <View key={item._id}>
-          <Text>{item.brand}</Text>
-        </View>
-      )}
-      keyExtractor={(item) => item._id}
-    />
+    <LinearGradient colors={["#4c669f", "#3b5998", "#192f6a"]} style={styles.container}>
+      <Image source={require("../../../assets/home/home.svg")} style={styles.logo} />
+      <Text style={styles.title}>Let's get started</Text>
+      <TouchableOpacity style={styles.button} onPress={handleLoginRoute}>
+        <Text style={styles.buttonText}>Go to login</Text>
+      </TouchableOpacity>
+    </LinearGradient>
   );
 };
 
