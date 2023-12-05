@@ -14,19 +14,19 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(true);
 
     const info = await loginAuth(email, password);
-    if (!info) {
-      setUserInfo(info);
-      setUserToken(userInfo.data.token);
+    if (info && info.data && info.data.token) {
+      setUserInfo(info.data);
+      setUserToken(info.data.token);
 
-      await AsyncStorage.setItem("userInfo", JSON.stringify(userInfo));
-      await AsyncStorage.setItem("userToken", userToken);
+      await AsyncStorage.setItem("userInfo", JSON.stringify(info));
+      await AsyncStorage.setItem("userToken", info.data.token);
     }
 
     setIsLoading(false);
   };
 
   const logout = () => {
-    setIsLoading(false);
+    setIsLoading(true);
     setUserToken(null);
 
     AsyncStorage.removeItem("userInfo");

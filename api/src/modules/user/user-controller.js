@@ -44,7 +44,14 @@ const loginUser = async (req, reply) => {
   const tryLogin = await loginElement(password, findUser);
   if (!tryLogin) return customError(reply, 404, "Password not match");
 
-  customResponse(reply, 200, findUser);
+  const logged = {
+    name: findUser[0].name,
+    phone: findUser[0].phone,
+    is_deleted: findUser[0].is_deleted,
+    token: tryLogin,
+  };
+
+  customResponse(reply, 200, logged);
 };
 
 const putUser = async (req, reply) => {

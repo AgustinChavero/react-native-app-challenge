@@ -1,22 +1,17 @@
 import React from "react";
-/* import { createDrawerNavigator } from "@react-navigation/drawer";
+import { View, Text } from "react-native";
 
-const Drawer = createDrawerNavigator(); */
+import NavBar from "../components/nav/nav";
+
+import Dashboard from "../views/dashboard/dashboard";
 
 const AppStack = () => {
   return (
     <View>
-      <Text>APP-STACK</Text>
+      <NavBar />
+      <Dashboard />
     </View>
   );
 };
 
 export default AppStack;
-
-/* <Drawer.Navigator>
-      <Drawer.Screen />
-      <Drawer.Screen />
-      <Drawer.Screen />
-      <Drawer.Screen />
-      <Drawer.Screen />
-    </Drawer.Navigator> */
