@@ -6,10 +6,6 @@ const bodySchema = Joi.object({
     "string.empty": "The store_id cannot be empty",
     "string.required": "The store_id is required",
   }),
-  discount_id: Joi.string().trim().messages({
-    "string.base": "The discount_id must be a string",
-    "string.empty": "The discount_id cannot be empty",
-  }),
   brand: Joi.string().trim().max(255).required().messages({
     "string.base": "The brand must be a string",
     "string.empty": "The brand cannot be empty",
@@ -50,6 +46,7 @@ const bodySchema = Joi.object({
     "number.min": "The qualification must be greater than or equal to 0",
   }),
   in_discount: Joi.boolean().optional(),
+  discount_id: Joi.string().optional(),
   is_deleted: Joi.boolean().optional(),
 }).options({ abortEarly: false });
 
