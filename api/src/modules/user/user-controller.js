@@ -16,6 +16,14 @@ const { catchedAsync } = require("../../services/errors/catched-async");
 
 const postUser = async (req, reply) => {
   const { body } = req;
+  const { id } = req.params;
+
+  const paramsValidate = paramsValidation(paramsSchema, req);
+  if (paramsValidate) return customError(reply, 404, `${paramsValidate}`);
+
+  const findUser = await globalService.findElement(id, User);
+  if (!findUser || !findUser.is_admin)
+    return customError(reply, 404, "No es posible para usted crear un usuario");
 
   const bodyValidate = bodyValidation(bodySchema, req);
   if (bodyValidate) return customError(reply, 404, `${bodyValidate}`);
@@ -26,9 +34,9 @@ const postUser = async (req, reply) => {
     { ...body, password: hashedPassword },
     User
   );
-  if (!newUser) return customError(reply, 409, "User not created");
+  if (!newUser) return customError(reply, 409, "Problemas al crear usuario");
 
-  customResponse(reply, 200, { message: "User created", newUser });
+  customResponse(reply, 200, { message: "Usuario creado", newUser });
 };
 
 const loginUser = async (req, reply) => {
@@ -39,12 +47,13 @@ const loginUser = async (req, reply) => {
   if (queryValidate) return customError(reply, 404, `${queryValidate}`);
 
   const findUser = await globalService.findAllElement(User, query);
-  if (!findUser.length) return customError(reply, 404, "Users not found");
+  if (!findUser.length) return customError(reply, 404, "Usuario no encontrado");
 
   const tryLogin = await loginElement(password, findUser);
-  if (!tryLogin) return customError(reply, 404, "Password not match");
+  if (!tryLogin) return customError(reply, 404, "Password no coincide");
 
   const logged = {
+    _id: findUser[0]._id,
     name: findUser[0].name,
     phone: findUser[0].phone,
     is_deleted: findUser[0].is_deleted,
@@ -65,12 +74,12 @@ const putUser = async (req, reply) => {
   if (paramsValidate) return customError(reply, 404, `${paramsValidate}`);
 
   const findUser = await globalService.findElement(id, User);
-  if (!findUser) return customError(reply, 404, "User not found");
+  if (!findUser) return customError(reply, 404, "Usuario no encontrado");
 
   const user = await globalService.updateElement(id, body, User);
-  if (!user) return customError(reply, 409, "User not updated");
+  if (!user) return customError(reply, 409, "Problemas al actualizar usuario");
 
-  return customResponse(reply, 200, { message: "User updated", user });
+  return customResponse(reply, 200, { message: "Usuario actualizado", user });
 };
 
 const getAllUser = async (req, reply) => {
@@ -80,9 +89,9 @@ const getAllUser = async (req, reply) => {
   if (queryValidate) return customError(reply, 409, `${queryValidate}`);
 
   const users = await globalService.findAllElement(User, query);
-  if (!users.length) return customError(reply, 404, "Users not found");
+  if (!users.length) return customError(reply, 404, "Usuarios no encontrados");
 
-  customResponse(reply, 200, { message: "Users finded", users });
+  customResponse(reply, 200, { message: "Usuarios encontrados", users });
 };
 
 const getUser = async (req, reply) => {
@@ -92,9 +101,9 @@ const getUser = async (req, reply) => {
   if (paramsValidate) return customError(reply, 404, `${paramsValidate}`);
 
   const user = await globalService.findElement(id, User);
-  if (!user) return customError(reply, 404, "User not found");
+  if (!user) return customError(reply, 404, "Usuario no encontrado");
 
-  return customResponse(reply, 200, { message: "User finded", user });
+  return customResponse(reply, 200, { message: "Usuario encontrado", user });
 };
 
 const deleteUser = async (req, reply) => {
@@ -104,12 +113,12 @@ const deleteUser = async (req, reply) => {
   if (paramsValidate) return customError(reply, 404, `${paramsValidate}`);
 
   const findUser = await globalService.findElement(id, User);
-  if (!findUser) return customError(reply, 404, "User not found");
+  if (!findUser) return customError(reply, 404, "Usuario no encontrado");
 
   const user = await globalService.deleteElement(id, User);
-  if (!user) return customError(reply, 409, "User not deleted");
+  if (!user) return customError(reply, 409, "Problemas al eliminar usuario");
 
-  return customResponse(reply, 200, { message: "User deleted", user });
+  return customResponse(reply, 200, { message: "Usuario eliminado", user });
 };
 
 module.exports = {

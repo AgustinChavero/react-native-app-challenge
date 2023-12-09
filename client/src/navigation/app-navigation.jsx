@@ -1,4 +1,3 @@
-// app-navigation.js
 import React, { useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { AuthContext } from "../middlewares/auth-context/auth-context";
