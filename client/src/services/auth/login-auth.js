@@ -1,9 +1,11 @@
 import axios from "axios";
 
+import { DEPLOY } from "../config";
+
 const loginAuth = async (email, password) => {
   try {
     const response = await axios.post(
-      "http://localhost:3000/user/login",
+      `${DEPLOY}/user/login`,
       { password },
       {
         params: { email },
