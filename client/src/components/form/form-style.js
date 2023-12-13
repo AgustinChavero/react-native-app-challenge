@@ -2,9 +2,10 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
     paddingHorizontal: 20,
     paddingTop: 20,
+    paddingBottom: 80, // Añade espacio para acomodar la lista de productos debajo del formulario
+    backgroundColor: "#fff",
   },
   textInput: {
     borderWidth: 1,
@@ -16,15 +17,6 @@ export const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     marginBottom: 5,
-  },
-  switchContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 10,
-  },
-  switchText: {
-    fontSize: 16,
-    marginLeft: 10,
   },
   button: {
     marginTop: 20,

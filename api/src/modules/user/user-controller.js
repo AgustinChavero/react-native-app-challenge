@@ -54,6 +54,7 @@ const loginUser = async (req, reply) => {
 
   const logged = {
     _id: findUser[0]._id,
+    store_id: findUser[0].store_id,
     name: findUser[0].name,
     phone: findUser[0].phone,
     is_deleted: findUser[0].is_deleted,

@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 
 export const styles = StyleSheet.create({
   navbar: {
@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     height: 60,
-    backgroundColor: "#3f51b5", // Cambia el color de fondo si deseas
+    backgroundColor: "#3f51b5",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -15,7 +15,9 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    width: "100%", // Asegura que ocupe todo el ancho de la pantalla
+    width: "100%",
+    position: "relative",
+    zIndex: 1000,
   },
   icon: {
     padding: 10,
@@ -23,11 +25,11 @@ export const styles = StyleSheet.create({
   menuIcon: {
     flexDirection: "row",
     alignItems: "center",
-    paddingLeft: 20, // Añade el padding izquierdo
+    paddingLeft: 20,
   },
   menuText: {
     marginLeft: 5,
-    color: "#fff", // Color del texto del menú
+    color: "#fff",
     fontWeight: "bold",
     fontSize: 16,
   },
@@ -35,31 +37,35 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   titleText: {
-    color: "#fff", // Color del texto del título
+    color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
   },
   profileIcon: {
     flexDirection: "row",
     alignItems: "center",
-    paddingRight: 20, // Añade el padding derecho
+    paddingRight: 20,
   },
   profileText: {
-    color: "#fff", // Color del texto del perfil
+    color: "#fff",
     fontWeight: "bold",
     fontSize: 16,
   },
   menu: {
     position: "absolute",
-    top: 60, // Altura de la barra de navegación
-    right: 0,
-    backgroundColor: "#3f51b5", // Color del menú desplegable
-    padding: 10,
-    zIndex: 1000,
+    top: 60,
+    bottom: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#3f51b5",
+    zIndex: 999,
+    paddingTop: 60,
   },
   menuItem: {
     color: "#fff",
     fontSize: 16,
     paddingVertical: 5,
+    textAlign: "center",
   },
 });
