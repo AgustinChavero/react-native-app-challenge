@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { useProducts } from "../../../../zustand/products/products";
@@ -12,6 +12,7 @@ function ProductList() {
   const navigation = useNavigation();
 
   const [isCreating, setIsCreating] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const allProducts = useProducts((state) => state.allProducts);
   const fetchData = useProducts((state) => state.fetchData);
@@ -27,6 +28,10 @@ function ProductList() {
   const handleProductDetails = (id) => {
     navigation.navigate("product-detail", { productId: id });
   };
+
+  const filteredProducts = allProducts.data?.products.filter((product) =>
+    product.brand.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const renderProductItem = ({ item }) => {
     return (
@@ -51,8 +56,16 @@ function ProductList() {
           <TouchableOpacity style={styles.detailButton} onPress={handleToggleCreating}>
             <Text style={styles.buttonText}>Crear Producto</Text>
           </TouchableOpacity>
+          <View style={styles.searchContainer}>
+            <TextInput
+              style={styles.searchInput}
+              placeholder="Buscar por nombre"
+              value={searchQuery}
+              onChangeText={(text) => setSearchQuery(text)}
+            />
+          </View>
           <FlatList
-            data={allProducts.data?.products}
+            data={filteredProducts}
             renderItem={renderProductItem}
             keyExtractor={(item) => item._id}
           />

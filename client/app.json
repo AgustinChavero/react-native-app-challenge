@@ -21,10 +21,22 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.agustinchavero.client",
+      "compileSdkVersion": 31,
+      "config": {
+        "googleServicesFile": "./google-services.json",
+        "useAndroidX": true, 
+        "packageInstance": "com.agustinchavero.client"
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ff8e6c90-a551-429e-a299-7cd95ca61261"
+      }
     }
   }
 }

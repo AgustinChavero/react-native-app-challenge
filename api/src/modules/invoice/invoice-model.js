@@ -4,7 +4,18 @@ const invoiceSchema = new mongoose.Schema(
   {
     store_id: {
       type: String,
-      default: "",
+      required: true,
+    },
+    user_id: {
+      type: String,
+      required: true,
+    },
+    buyer_dni: {
+      type: String,
+      required: true,
+    },
+    buyer_name: {
+      type: String,
       required: true,
     },
     amount: {

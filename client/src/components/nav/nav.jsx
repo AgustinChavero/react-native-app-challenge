@@ -1,19 +1,26 @@
 import React, { useState } from "react";
 import { View, Text, Pressable } from "react-native";
-import Svg, { Path } from "react-native-svg"; // Importa los componentes de SVG desde react-native-svg
+import Svg, { Path } from "react-native-svg";
+import { useNavigation } from "@react-navigation/native";
 import { styles } from "./nav-style";
 
 const NavBar = () => {
+  const navigation = useNavigation();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const navigateToScreen = (screenName) => {
+    navigation.navigate(screenName);
+    setIsMenuOpen(false);
+  };
+
   return (
-    <View style={[styles.navbar, { width: "100%" }]}>
+    <View style={styles.navbar}>
       <Pressable style={styles.menuIcon} onPress={toggleMenu}>
-        {/* Utiliza un SVG para mostrar el icono */}
         <Svg
           width="24"
           height="24"
@@ -29,15 +36,25 @@ const NavBar = () => {
       </Pressable>
 
       <View style={styles.title}>
-        <Text style={styles.titleText}>Hello, this is a NavBar</Text>
+        <Text style={styles.titleText}>Kiosco Nachei</Text>
       </View>
 
       {isMenuOpen && (
-        <View style={styles.menu}>
-          <Text style={styles.menuItem}>Option 1</Text>
-          <Text style={styles.menuItem}>Option 2</Text>
-          <Text style={styles.menuItem}>Option 3</Text>
-          {/* Agrega las opciones del menú */}
+        <View
+          style={[styles.menu, { width: "100%", height: "700px", alignItems: "center" }]}
+        >
+          <Text style={styles.menuItem} onPress={() => navigateToScreen("dashboard")}>
+            Administracion
+          </Text>
+          <Text style={styles.menuItem} onPress={() => navigateToScreen("shopping-cart")}>
+            Carrito
+          </Text>
+          <Text style={styles.menuItem} onPress={() => navigateToScreen("products-list")}>
+            Productos
+          </Text>
+          <Text style={styles.menuItem} onPress={() => navigateToScreen("users-list")}>
+            Usuarios
+          </Text>
         </View>
       )}
 

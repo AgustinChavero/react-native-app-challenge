@@ -1,12 +1,10 @@
 import React from "react";
-import { View } from "react-native";
-
-import UserList from "./lists/user/user-list";
+import { Text, View } from "react-native";
 
 const Dashboard = () => {
   return (
     <View>
-      <UserList />
+      <Text>Hola</Text>
     </View>
   );
 };
