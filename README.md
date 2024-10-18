@@ -1,4 +1,4 @@
-# Dashboard administrativo de tienda (EN PROCESO)
+# Dashboard administrativo de tienda
 
 - El objetivo del proyecto es poder dar acceso, al administrador o los empleados, a la gestion de los distintos negocios.
 - En el dashboard se deberia poder:
